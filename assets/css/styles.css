@@ -1,0 +1,201 @@
+:root {
+    --bg-color-1: #5b050f;
+    --bg-color-2: #a20616;
+    --calabaza-piel-1: #dd7718;
+    --calabaza-piel-2: #aa5403;
+    --calabaza-gradient: linear-gradient(
+      to right,
+      var(--calabaza-piel-1) 50%,
+      var(--calabaza-piel-2) 50%
+    );
+    --vacio: #1f1f1f;
+    --tallo: #0c600c;
+    --parpadeo-bg-1: rgba(255, 176, 0, 0.9);
+    --parpadeo-bg-2: rgba(255, 176, 0, 0.8);
+  }
+
+  html,
+  body {
+    font-size: 1.7vw; 
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( 
+      40deg,
+      var(--bg-color-1) 0%,
+      var(--bg-color-2) 100%
+    );
+    overflow: hidden; 
+  }
+  
+  .container {
+    display: flex; 
+    justify-content: space-around; /* repartimos los elementos uniformemente */
+    align-items: center; 
+    height: 100%;
+  }
+  .calabaza {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
+    margin: 4em;
+  }
+  
+  .tallo {
+    width: 1.5em;
+    height: 2em;
+    margin-right: 1em; 
+    background: var(--tallo); 
+    transform: skew(15deg); 
+  }
+  
+  .cara {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    flex-direction: column; 
+    width: 12em;
+    height: 10em;
+    border-radius: 60% / 60%; 
+    background-image: var(--calabaza-gradient); 
+    box-shadow: -0.615em 0 0 0 var(--calabaza-piel-2), 
+      -1.875em 0 0 0 var(--calabaza-piel-1), -2.5em 0 0 0 var(--calabaza-piel-2) ,
+      -3.75em 0 0 0 var(--calabaza-piel-1), 0.615em 0 0 0 var(--calabaza-piel-1),
+      1.875em 0 0 0 var(--calabaza-piel-2), 2.5em 0 0 0 var(--calabaza-piel-1) ,
+      3.75em 0 0 0 var(--calabaza-piel-2); 
+    animation: linear latido 1.2s infinite; 
+  }
+  
+  .ojos {
+    width: 7em;
+    height: 0;
+    display: flex; 
+    justify-content: space-around; 
+  }
+  .ojo{
+    width: 2em;
+    height: 2em;
+  }
+  .ojo.izq {
+    background: linear-gradient(45deg, var(--vacio) 50%, transparent 50%); 
+  }
+  .ojo.izq .interior{
+    height: 100%;
+    background: linear-gradient(45deg, var(--parpadeo-bg-1) 50%, transparent 50%);
+    animation: ojo-izq-parpadeo 0.2s infinite; 
+  }
+  .ojo.der {
+    background: linear-gradient(-45deg, var(--vacio) 50%, transparent 50%);
+  }
+  .ojo.der .interior {
+    height: 100%;
+    background: linear-gradient(-45deg, var(--parpadeo-bg-1) 50%, transparent 50%);
+    animation: ojo-der-parpadeo 0.2s infinite; 
+  }
+  
+  .boca {
+    width: 7em;
+    height: 3em;
+    background-color: var(--vacio); 
+    border-radius: 0 0 50% 50%; 
+    animation: risa 1.2s infinite; 
+  }
+  .boca .interior {
+    background: var(--parpadeo-bg-1); 
+    height: 100%;
+    border-radius: 0 0 50% 50%; 
+    animation: parpadeo 0.2s infinite; 
+  }
+  
+  .dientes {
+    display: flex; 
+    justify-content: space-around; 
+  }
+  .diente {
+    width: 1.4em;
+    height: 1.25em;
+    background: var(--calabaza-gradient); 
+  }
+  .diente:first-child {
+    background: var(--calabaza-piel-1); 
+  }
+  .diente:last-child {
+    background: var(--calabaza-piel-2); 
+  }
+  
+  .calabaza .ojo,
+  .calabaza .ojo .interior {
+    border-radius: 50%; 
+  }
+
+  .calabaza .boca {
+    height: 1.8em;
+  }
+
+  .calabaza .boca .interior {
+    border-radius: 0 0 100% 100%; 
+    animation-delay: 0.1s; 
+  }
+
+  .calabaza .diente {
+    background: transparent; 
+    border-left: 0.9em solid transparent; 
+    border-right: 0.9em solid transparent; 
+  }
+
+  .calabaza .diente:nth-child(n + 2) {
+    border-top: 0.9em solid var(--calabaza-piel-2); 
+  }
+
+  .calabaza .diente:nth-child(-n + 2) {
+    border-top: 0.9em solid var(--calabaza-piel-1); 
+  }
+
+  /* Animaciones */
+  @keyframes latido {
+    0% {
+      width: 12em;
+      height: 10em;
+    }
+    50% {
+      width: 11.6em;
+      height: 9.5em;
+    }
+    100% {
+      width: 12em;
+      height: 10em;
+    }
+  }
+  
+  @keyframes risa {
+    50% {
+      height: 2.2em;
+    }
+  }
+  
+  
+  @keyframes parpadeo {
+    50% {
+      background: var(--parpadeo-bg-2); 
+    }
+  }
+  
+  @keyframes ojo-izq-parpadeo {
+    50% {
+      background: linear-gradient(
+        45deg,
+        var(--parpadeo-bg-2) 50%,
+        transparent 50%
+      );
+    }
+  }
+  @keyframes ojo-der-parpadeo {
+    50% {
+      background: linear-gradient(
+        -45deg,
+        var(--parpadeo-bg-2) 50%,
+        transparent 50%
+      );
+    }
+  }
